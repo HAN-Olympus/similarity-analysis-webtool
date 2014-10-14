@@ -95,9 +95,9 @@
 						console.log(queryFileNumberOfReads);
 
 						$("#queryFileReads").append(queryFileNumberOfReads);
-						// $("#queryFilePath").append(queryPath);
 
-						document.getElementById("queryFilePath").value=queryPath;
+						document.getElementById("queryFilePath").value = queryPath;
+						document.getElementById("queryFilePath").readOnly = true;
 
 					},
 					onError: function(files,status,errMsg)
@@ -130,9 +130,9 @@
 						console.log(databaseFileNumberOfReads);
 
 						$("#databaseFileReads").append(databaseFileNumberOfReads);
-						// $("#databaseFilePath").append(databasePath);
 
-						document.getElementById("databaseFilePath").value=databasePath;
+						document.getElementById("databaseFilePath").value = databasePath;
+						document.getElementById("databaseFilePath").readOnly = true;
 
 					},
 					onError: function(files,status,errMsg)
