@@ -26,6 +26,9 @@
 			<div id="queryfileuploader">Query File</div>
 			<div id="queryFileUploadStatus"></div>
 			<div id="queryFileReads">Number of reads: </div>
+			<div id="queryFileMedianReadLength">Median Read Length: </div>
+			Query Genome Size (in milions):
+			<input type="number" name="queryGenomeSize" step="0.01"><br><br>
 			<!-- <div id="queryFilePath"></div> -->
 
 			Query File Path on Server:
@@ -34,6 +37,9 @@
 			<div id="databasefileuploader">Database File</div>
 			<div id="databaseFileUploadStatus"></div>
 			<div id="databaseFileReads">Number of reads: </div>
+			<div id="databaseFileMedianReadLength">Median Read Length: </div>
+			Database Genome Size (in milions):
+			<input type="number" name="databaseGenomeSize" step="0.01"><br><br>
 			<!-- <div id="databaseFilePath"></div> -->
 
 			Database File Path on Server:
@@ -41,11 +47,6 @@
 
 			<!-- style="visibility: hidden" -->
 
-			Query Genome Size (in milions):
-			<input type="number" name="queryGenomeSize" step="0.01"><br><br>
-
-			Database Genome Size (in milions):
-			<input type="number" name="databaseGenomeSize" step="0.01"><br><br>
 
 			Read Length:
 			<input type="number" name="readLength" min="100"><br><br>
@@ -90,11 +91,14 @@
 
 						var queryPath = data.queryFilePath;
 						var queryFileNumberOfReads = data.queryFileReads;
+						var queryFileMedianReadLength = data.queryFileMedReadLength;
 
 						console.log(queryPath);
 						console.log(queryFileNumberOfReads);
+						console.log(queryFileMedianReadLength);
 
 						$("#queryFileReads").append(queryFileNumberOfReads);
+						$("#queryFileMedianReadLength").append(queryFileMedianReadLength);
 
 						document.getElementById("queryFilePath").value = queryPath;
 						document.getElementById("queryFilePath").readOnly = true;
@@ -125,11 +129,14 @@
 
 						var databasePath = data.databaseFilePath;
 						var databaseFileNumberOfReads = data.databaseFileReads;
+						var databaseFileMedianReadLength = data.databaseFileMedReadLength;
 
 						console.log(databasePath);
 						console.log(databaseFileNumberOfReads);
+						console.log(databaseFileMedianReadLength)
 
 						$("#databaseFileReads").append(databaseFileNumberOfReads);
+						$("#databaseFileMedianReadLength").append(databaseFileMedianReadLength);
 
 						document.getElementById("databaseFilePath").value = databasePath;
 						document.getElementById("databaseFilePath").readOnly = true;

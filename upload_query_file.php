@@ -25,11 +25,11 @@
 
 	//$queryFileNumberOfReads = preg_grep("^>", file($queryFilePath));
 	$queryFileNumberOfReads = str_replace("\n", "", shell_exec("sh get_amount_of_reads.sh $queryFilePath"));
-
-
+	$queryFileMedianReadLength = str_replace("\n", "", shell_exec("python calculate_med_readlength.py $queryFilePath"));
 
 	$query_filePath = array("queryFilePath" => $queryFilePath, 
-							"queryFileReads" => $queryFileNumberOfReads);
+							"queryFileReads" => $queryFileNumberOfReads,
+							"queryFileMedReadLength" => $queryFileMedianReadLength);
 	echo json_encode($query_filePath);
 
 

@@ -21,9 +21,11 @@
 	$databaseFilePath = $UPLOAD_DIR.$databaseFilename;
 
 	$databaseFileNumberOfReads = str_replace("\n", "", shell_exec("sh get_amount_of_reads.sh $databaseFilePath"));
+	$databaseFileMedianReadLength = str_replace("\n", "", shell_exec("python calculate_med_readlength.py $databaseFilePath"));
 
-	$db_filePath = array('databaseFilePath' => $databaseFilePath,
-						'databaseFileReads' => $databaseFileNumberOfReads);
+	$db_filePath = array("databaseFilePath" => $databaseFilePath,
+						"databaseFileReads" => $databaseFileNumberOfReads,
+						"databaseFileMedReadLength" => $databaseFileMedianReadLength);
 	echo json_encode($db_filePath);
 
 	// Get the parameters the user gave in
