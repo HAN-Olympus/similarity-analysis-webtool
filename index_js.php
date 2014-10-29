@@ -58,7 +58,7 @@
 				<option value="FASTQ">FASTQ</option>
 			</select><br>
 
-			Iterations:
+			Iterations for ST-Dev calculation:
 			<input type="number" name="iterations" min="1" step="1"><br>
 			<input type="submit" name="runToolButton" value="Run Tool">
 		</form>
