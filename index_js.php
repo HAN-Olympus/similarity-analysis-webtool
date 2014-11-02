@@ -49,7 +49,7 @@
 
 
 			Read Length:
-			<input type="number" name="readLength" min="100"><br><br>
+			<input type="number" name="readLength" min="0"><br><br>
 			
 			Filetype:
 			<select name="queryFiletype">
