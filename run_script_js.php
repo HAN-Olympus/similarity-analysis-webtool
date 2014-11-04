@@ -86,7 +86,7 @@
 		$coveragePDF = "http://127.0.0.1:8888/OUTPUT/{$queryName}-{$databaseName}/figures/Coverage_{$queryName}_ALIGNED_TO_{$databaseName}.pdf";
 		$misMatchesPDF = "http://127.0.0.1:8888/OUTPUT/{$queryName}-{$databaseName}/figures/Mismatches_{$queryName}_ALIGNED_TO_{$databaseName}.pdf";
 		$percentIdentityPDF = "http://127.0.0.1:8888/OUTPUT/{$queryName}-{$databaseName}/figures/percent\ dentity_{$queryName}_ALIGNED_TO_{$databaseName}.pdf";
-		$percentIdentityPerCoveragePDF = "http://127.0.0.1:8888/OUTPUT/{$queryName}-{$databaseName}/figures/PercentID_per_coverage_{$queryName}_ALIGNED_TO_{$databaseName}.pdf";
+		$percentIdentityPerCoveragePDF = "http://127.0.0.1:8888/OUTPUT/{$queryName}-{$databaseName}/figures/percentID_per_coverage_{$queryName}_ALIGNED_TO_{$databaseName}.pdf";
 
 
 
