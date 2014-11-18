@@ -12,7 +12,11 @@
  			<input type="submit" name="getMisMatchesPDFButton" id="getMisMatchesPDFButton" value="View Mismatches Plot" onclick="viewMisMatchesPDF()">
  			<input type="submit" name="getPercentIdentityPDFButton" id="getPercentIdentityPDFButton" value="View Percent Identity Plot" onclick="viewPercentIdentityPDF()">
  			<input type="submit" name="getPercentIdentityPerCoveragePDFButton" id="getPercentIdentityPerCoveragePDFButton" value="View Percent Identity Per CoveragePlot" onclick="viewPercentIdentityPerCoveragePDF()"><br>
- 			Script output: <br>
+
+ 			Create a zip of all the output data:
+ 			<input type="submit" name="createZipButton" id="createZipButton" value="Create Zip" onclick="createZipOfOutputFolder()">
+
+ 			Script output: <br><br>
 
  			<!-- Disable the 3 buttons to view the PDF's -->
  			<script type="text/javascript" >
@@ -80,7 +84,9 @@
 
 
 		// Run the actual script
-		passthru("python ../cgi-bin/tool/core.py -i $queryFilePath -d $databaseFilePath -o /Applications/MAMP/htdocs/OUTPUT $fileTypeParam -s $queryGenomeSize -k $databaseGenomeSize -T $iterations");
+		// IMPORTANT!!
+		// Be sure to change the output folder (the path after the -o flag) to the appropriate path on your computer
+		//passthru("python ../cgi-bin/tool/core.py -i $queryFilePath -d $databaseFilePath -o /Applications/MAMP/htdocs/OUTPUT $fileTypeParam -s $queryGenomeSize -k $databaseGenomeSize -T $iterations");
 
 
 		$coveragePDF = "http://127.0.0.1:8888/OUTPUT/{$queryName}-{$databaseName}/figures/Coverage_{$queryName}_ALIGNED_TO_{$databaseName}.pdf";
@@ -90,57 +96,20 @@
 
 
 
-
 		// // Create a zip from the output folder
 		// $source_dir = "http://127.0.0.1:8888/OUTPUT/{$queryName}-{$databaseName}";
-		// $zip_file = "{$queryName}-{$databaseName}.zip";
+		$zip_file = "{$queryName}-{$databaseName}.zip";
+		
+		// The path where we can find the output
+		// BE SURE TO CHANGE THIS TO THE CORRECT PATH IF YOU SETUP THE TOOL ON A DIFFERENT MACHINE
+		$rootPath = "./OUTPUT/{$queryName}-{$databaseName}_equalized";
 
-		// function Zip($source, $destination)
-		// {
-		//     if (!extension_loaded('zip') || !file_exists($source)) {
-		//         return false;
-		//     }
 
-		//     $zip = new ZipArchive();
-		//     if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-		//         return false;
-		//     }
+		$zipCommand = "zip -r $zip_file $rootPath";
+		system($zipCommand);
 
-		//     $source = str_replace('\\', '/', realpath($source));
+		//shell_exec("sh zipFolder.sh $zip_file $rootPath");
 
-		//     if (is_dir($source) === true)
-		//     {
-		//         $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
-
-		//         foreach ($files as $file)
-		//         {
-		//             $file = str_replace('\\', '/', $file);
-
-		//             // Ignore "." and ".." folders
-		//             if( in_array(substr($file, strrpos($file, '/')+1), array('.', '..')) )
-		//                 continue;
-
-		//             $file = realpath($file);
-
-		//             if (is_dir($file) === true)
-		//             {
-		//                 $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
-		//             }
-		//             else if (is_file($file) === true)
-		//             {
-		//                 $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
-		//             }
-		//         }
-		//     }
-		//     else if (is_file($source) === true)
-		//     {
-		//         $zip->addFromString(basename($source), file_get_contents($source));
-		//     }
-
-		//     return $zip->close();
-		// }
-
-		// Zip($source_dir,$zip_file);
 
 	?>
 
@@ -170,6 +139,12 @@
  			function viewPercentIdentityPerCoveragePDF(){
  				var embedParams = {url: "<?php echo $percentIdentityPerCoveragePDF ?>"};
  				var myPDF = new PDFObject(embedParams).embed("percentIdentityPerCoveragePDFViewer");
+ 			}
+
+ 			// Create a zip of all the output folder
+ 			function createZipOfOutputFolder(){
+
+
  			}
 
  		</script>
